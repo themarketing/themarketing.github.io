@@ -43,7 +43,7 @@ function applyDOM(dom: HTMLElement, a): HTMLElement {
         let elms = dom.querySelectorAll(a.selector);
         Array.prototype.map.call(elms, (elm) => {
             if (typeof a.after !== "undefined") {
-                return a.fn(elm, a.after);
+                a.fn(elm, a.after);
             }
         });
     }
@@ -63,7 +63,7 @@ function applyPerson(dom: HTMLElement, obj): HTMLElement {
             { selector: ".rpPersonImage", after: obj[`image`], fn: changeSRC },
             { selector: ".rpPersonURL", after: obj[`url`], fn: changeURL }
         ].map((a) => {
-            applyDOM(dom, a);
+            dom = applyDOM(dom, a);
             return dom;
         });
     }
@@ -90,7 +90,7 @@ function applyReview(dom: HTMLElement, obj, fn): HTMLElement {
             { selector: ".rpPersonImage", after: obj[`author`][`image`], fn: changeSRC },
             { selector: ".rpPersonURL", after: obj[`author`][`url`], fn: changeURL }
         ].map((a) => {
-            applyDOM(dom, a);
+            dom = applyDOM(dom, a);
             return dom;
         });
     }
@@ -206,7 +206,7 @@ function applyQuestion(dom: HTMLElement, obj, fn) {
                     { selector: ".rpQuestionPersonImage", after: obj["author"]["image"], fn: changeSRC },
                     { selector: ".rpAnswerPersonImage", after: obj["acceptedAnswer"]["author"]["image"], fn: changeSRC }
                 ].map((a) => {
-                    applyDOM(dom, a);
+                    dom = applyDOM(dom, a);
                     return dom;
                 });
                 if (typeof obj[`author`][`url`] === "undefined") {
