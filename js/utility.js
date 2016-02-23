@@ -56,10 +56,10 @@ function applyPerson(dom, obj) {
         obj["image"] = "";
     }
     if (obj["@type"] === "Person") {
-        var name_1 = getAuthorName(obj["name"]);
+        var personname = getAuthorName(obj["name"]);
         [
             { selector: ".person", after: obj["@id"], fn: changeID },
-            { selector: ".rpPersonName", after: name_1, fn: changeTXT },
+            { selector: ".rpPersonName", after: personname, fn: changeTXT },
             { selector: ".rpPersonImage", after: obj["image"], fn: changeSRC },
             { selector: ".rpPersonURL", after: obj["url"], fn: changeURL }
         ].map(function (a) {
@@ -198,11 +198,13 @@ function applyQuestion(dom, obj, fn) {
         }
         loopA(obj, obj["author"]["url"], applyPersonObj, function (obj) {
             loopA(obj, obj["acceptedAnswer"]["author"]["url"], applyPersonObj, function (obj) {
+                var qname = getAuthorName(obj["author"]);
+                var aname = getAuthorName(obj["acceptedAnswer"]["author"]);
                 [
                     { selector: ".rpQuestionText", after: obj["text"], fn: changeTXT },
                     { selector: ".rpAnswerText", after: obj["acceptedAnswer"]["text"], fn: changeTXT },
-                    { selector: ".rpQuestionPersonName", after: getAuthorName(obj["author"]), fn: changeTXT },
-                    { selector: ".rpAnswerPersonName", after: getAuthorName(obj["acceptedAnswer"]["author"]), fn: changeTXT },
+                    { selector: ".rpQuestionPersonName", after: qname, fn: changeTXT },
+                    { selector: ".rpAnswerPersonName", after: aname, fn: changeTXT },
                     { selector: ".rpQuestionPersonImage", after: obj["author"]["image"], fn: changeSRC },
                     { selector: ".rpAnswerPersonImage", after: obj["acceptedAnswer"]["author"]["image"], fn: changeSRC }
                 ].map(function (a) {

@@ -66,10 +66,10 @@ function applyPerson(dom: HTMLElement, obj): HTMLElement {
         obj[`image`] = ``;
     }
     if (obj[`@type`] === `Person`) {
-        let name = getAuthorName(obj[`name`]);
+        let personname = getAuthorName(obj[`name`]);
         [
             { selector: ".person", after: obj[`@id`], fn: changeID },
-            { selector: ".rpPersonName", after: name, fn: changeTXT },
+            { selector: ".rpPersonName", after: personname, fn: changeTXT },
             { selector: ".rpPersonImage", after: obj[`image`], fn: changeSRC },
             { selector: ".rpPersonURL", after: obj[`url`], fn: changeURL }
         ].map((a) => {
@@ -207,11 +207,13 @@ function applyQuestion(dom: HTMLElement, obj, fn) {
         }
         loopA(obj, obj["author"]["url"], applyPersonObj, (obj) => {
             loopA(obj, obj["acceptedAnswer"]["author"]["url"], applyPersonObj, (obj) => {
+              let qname = getAuthorName(obj["author"]);
+              let aname = getAuthorName(obj["acceptedAnswer"]["author"]);
                 [
                     { selector: ".rpQuestionText", after: obj["text"], fn: changeTXT },
                     { selector: ".rpAnswerText", after: obj["acceptedAnswer"]["text"], fn: changeTXT },
-                    { selector: ".rpQuestionPersonName", after: getAuthorName(obj["author"]), fn: changeTXT },
-                    { selector: ".rpAnswerPersonName", after: getAuthorName(obj["acceptedAnswer"]["author"]), fn: changeTXT },
+                    { selector: ".rpQuestionPersonName", after: qname, fn: changeTXT },
+                    { selector: ".rpAnswerPersonName", after: aname, fn: changeTXT },
                     { selector: ".rpQuestionPersonImage", after: obj["author"]["image"], fn: changeSRC },
                     { selector: ".rpAnswerPersonImage", after: obj["acceptedAnswer"]["author"]["image"], fn: changeSRC }
                 ].map((a) => {
