@@ -65,9 +65,10 @@ function applyPerson(dom, obj) {
         obj["image"] = "";
     }
     if (obj["@type"] === "Person") {
+        var name_1 = getAuthorName(obj["name"]);
         [
             { selector: ".person", after: obj["@id"], fn: changeID },
-            { selector: ".rpPersonName", after: getAuthorName(obj["name"]), fn: changeTXT },
+            { selector: ".rpPersonName", after: name_1, fn: changeTXT },
             { selector: ".rpPersonImage", after: obj["image"], fn: changeSRC },
             { selector: ".rpPersonURL", after: obj["url"], fn: changeURL }
         ].map(function (a) {
