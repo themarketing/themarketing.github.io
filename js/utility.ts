@@ -39,7 +39,7 @@ function changeID(elm: HTMLElement, str: string): HTMLElement {
     return elm;
 }
 function applyDOM(dom: HTMLElement, a): HTMLElement {
-    /*//// ここからホントは余計なコード ios safariで名前が出ない問題の dirty hack
+    ///// ここからホントは余計なコード ios safariで名前が出ない問題の dirty hack
     Array.prototype.map.call(Array.prototype.filter.call(dom.querySelectorAll("div"), (subdom) => {
         if (subdom.className === "rpPersonName") { return true; }
     }), (elm) => {
@@ -47,7 +47,7 @@ function applyDOM(dom: HTMLElement, a): HTMLElement {
             return a.fn(elm, "");
         }
     });
-    ///// ここまで ////*/
+    ///// ここまで /////
     if (dom.querySelector(a.selector)) {
         let elms = dom.querySelectorAll(a.selector);
         Array.prototype.map.call(elms, (elm) => {
@@ -207,8 +207,8 @@ function applyQuestion(dom: HTMLElement, obj, fn) {
         }
         loopA(obj, obj["author"]["url"], applyPersonObj, (obj) => {
             loopA(obj, obj["acceptedAnswer"]["author"]["url"], applyPersonObj, (obj) => {
-              let qname = getAuthorName(obj["author"]);
-              let aname = getAuthorName(obj["acceptedAnswer"]["author"]);
+                let qname = getAuthorName(obj["author"]);
+                let aname = getAuthorName(obj["acceptedAnswer"]["author"]);
                 [
                     { selector: ".rpQuestionText", after: obj["text"], fn: changeTXT },
                     { selector: ".rpAnswerText", after: obj["acceptedAnswer"]["text"], fn: changeTXT },
