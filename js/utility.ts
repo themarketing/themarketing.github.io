@@ -39,6 +39,15 @@ function changeID(elm: HTMLElement, str: string): HTMLElement {
     return elm;
 }
 function applyDOM(dom: HTMLElement, a): HTMLElement {
+  ///// ここからホントは余計なコード ios safariで名前が出ない問題の dirty hack
+  Array.prototype.map.call(Array.prototype.filter.call(dom.querySelectorAll("div"), (subdom) => {
+      if (subdom.className === "rpPersonName") { return true; }
+  }), (elm) => {
+      if (typeof a.after !== "undefined") {
+          return a.fn(elm, "");
+      }
+  });
+  ///// ここまで
     if (dom.querySelector(a.selector)) {
         let elms = dom.querySelectorAll(a.selector);
         Array.prototype.map.call(elms, (elm) => {
@@ -67,7 +76,6 @@ function applyPerson(dom: HTMLElement, obj): HTMLElement {
             return dom;
         });
     }
-    //addDOM(dom);
     return dom;
 }
 function applyReview(dom: HTMLElement, obj, fn): HTMLElement {
