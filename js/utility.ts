@@ -22,7 +22,8 @@ function getFromHTTP(url: string, fn, str: string) {
     xhr.send();
 }
 function changeTXT(elm: HTMLElement, str: string): HTMLElement {
-    elm.innerHTML = str;
+    //elm.innerHTML = str;
+    elm.insertAdjacentHTML('afterbegin', str);
     return elm;
 }
 function changeSRC(elm: HTMLImageElement, str: string): HTMLElement {
@@ -62,7 +63,8 @@ function applyPerson(dom: HTMLElement, obj): HTMLElement {
             { selector: ".rpPersonImage", after: obj[`image`], fn: changeSRC },
             { selector: ".rpPersonURL", after: obj[`url`], fn: changeURL }
         ].map((a) => {
-            return applyDOM(dom, a);
+            applyDOM(dom, a);
+            return dom;
         });
     }
     //addDOM(dom);
@@ -87,7 +89,10 @@ function applyReview(dom: HTMLElement, obj, fn): HTMLElement {
             { selector: ".rpReviewURL", after: obj[`url`], fn: changeURL },
             { selector: ".rpPersonImage", after: obj[`author`][`image`], fn: changeSRC },
             { selector: ".rpPersonURL", after: obj[`author`][`url`], fn: changeURL }
-        ].forEach((a) => { return applyDOM(dom, a); });
+        ].map((a) => {
+            applyDOM(dom, a);
+            return dom;
+        });
     }
     return dom;
 }
@@ -201,7 +206,8 @@ function applyQuestion(dom: HTMLElement, obj, fn) {
                     { selector: ".rpQuestionPersonImage", after: obj["author"]["image"], fn: changeSRC },
                     { selector: ".rpAnswerPersonImage", after: obj["acceptedAnswer"]["author"]["image"], fn: changeSRC }
                 ].map((a) => {
-                    return applyDOM(dom, a);
+                    applyDOM(dom, a);
+                    return dom;
                 });
                 if (typeof obj[`author`][`url`] === "undefined") {
                     fn(dom, obj);

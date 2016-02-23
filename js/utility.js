@@ -22,7 +22,7 @@ function getFromHTTP(url, fn, str) {
     xhr.send();
 }
 function changeTXT(elm, str) {
-    elm.innerHTML = str;
+    elm.insertAdjacentHTML('afterbegin', str);
     return elm;
 }
 function changeSRC(elm, str) {
@@ -62,7 +62,8 @@ function applyPerson(dom, obj) {
             { selector: ".rpPersonImage", after: obj["image"], fn: changeSRC },
             { selector: ".rpPersonURL", after: obj["url"], fn: changeURL }
         ].map(function (a) {
-            return applyDOM(dom, a);
+            applyDOM(dom, a);
+            return dom;
         });
     }
     return dom;
@@ -86,7 +87,10 @@ function applyReview(dom, obj, fn) {
             { selector: ".rpReviewURL", after: obj["url"], fn: changeURL },
             { selector: ".rpPersonImage", after: obj["author"]["image"], fn: changeSRC },
             { selector: ".rpPersonURL", after: obj["author"]["url"], fn: changeURL }
-        ].forEach(function (a) { return applyDOM(dom, a); });
+        ].map(function (a) {
+            applyDOM(dom, a);
+            return dom;
+        });
     }
     return dom;
 }
@@ -201,7 +205,8 @@ function applyQuestion(dom, obj, fn) {
                     { selector: ".rpQuestionPersonImage", after: obj["author"]["image"], fn: changeSRC },
                     { selector: ".rpAnswerPersonImage", after: obj["acceptedAnswer"]["author"]["image"], fn: changeSRC }
                 ].map(function (a) {
-                    return applyDOM(dom, a);
+                    applyDOM(dom, a);
+                    return dom;
                 });
                 if (typeof obj["author"]["url"] === "undefined") {
                     fn(dom, obj);
