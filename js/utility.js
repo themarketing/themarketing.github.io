@@ -199,11 +199,12 @@ function loopA(obj, str, fn, fn2) {
 }
 function applyQuestion(dom, obj, fn) {
     if (obj["@type"] === "Question") {
+        var someoneimg = "https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_person_black_48px.svg";
         if (typeof obj["author"]["image"] === "undefined") {
-            obj["author"]["image"] = "https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_person_black_48px.svg";
+            obj["author"]["image"] = someoneimg;
         }
         if (typeof obj["acceptedAnswer"]["author"]["image"] === "undefined") {
-            obj["acceptedAnswer"]["author"]["image"] = "https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_person_black_48px.svg";
+            obj["acceptedAnswer"]["author"]["image"] = someoneimg;
         }
         loopA(obj, obj["author"]["url"], applyPersonObj, function (obj) {
             loopA(obj, obj["acceptedAnswer"]["author"]["url"], applyPersonObj, function (obj) {

@@ -105,7 +105,6 @@ function applyReview(dom: HTMLElement, obj, fn): HTMLElement {
     }
     return dom;
 }
-
 function initReview(dom, obj) {
     applyReview(dom, obj, (dom, obj) => {
         applyPerson(dom, obj);
@@ -199,11 +198,12 @@ function loopA(obj, str: string, fn, fn2) {
 }
 function applyQuestion(dom: HTMLElement, obj, fn) {
     if (obj["@type"] === "Question") {
+      let someoneimg = "https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_person_black_48px.svg";
         if (typeof obj["author"]["image"] === "undefined") {
-            obj["author"]["image"] = "https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_person_black_48px.svg";
+            obj["author"]["image"] = someoneimg;
         }
         if (typeof obj["acceptedAnswer"]["author"]["image"] === "undefined") {
-            obj["acceptedAnswer"]["author"]["image"] = "https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_person_black_48px.svg";
+            obj["acceptedAnswer"]["author"]["image"] = someoneimg;
         }
         loopA(obj, obj["author"]["url"], applyPersonObj, (obj) => {
             loopA(obj, obj["acceptedAnswer"]["author"]["url"], applyPersonObj, (obj) => {
