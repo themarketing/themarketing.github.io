@@ -43,6 +43,7 @@ function applyDOM(dom, a) {
         var elms = dom.querySelectorAll(a.selector);
         Array.prototype.map.call(elms, function (elm) {
             if (typeof a.after !== "undefined") {
+                console.log(a.after);
                 a.fn(elm, a.after);
             }
         });
