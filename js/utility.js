@@ -38,6 +38,7 @@ function changeID(elm, str) {
     return elm;
 }
 function applyDOM(dom, a) {
+    console.log(a);
     if (dom.querySelector(a.selector)) {
         var elms = dom.querySelectorAll(a.selector);
         Array.prototype.map.call(elms, function (elm) {
