@@ -52,16 +52,6 @@ function getAuthorName(val) {
     return (typeof val === "object") ? val["name"] : val;
 }
 function applyPerson(dom: HTMLElement, obj): HTMLElement {
-    if (obj[`@type`] === `Person`) {
-        [
-            { selector: ".person", after: obj[`@id`], fn: changeID },
-            { selector: ".rpPersonName", after: getAuthorName(obj[`name`]), fn: changeTXT },
-            { selector: ".rpPersonImage", after: obj[`image`], fn: changeSRC },
-            { selector: ".rpPersonURL", after: obj[`url`], fn: changeURL }
-        ].map((a) => {
-            console.log(a);
-        });
-    }
     if (typeof obj["image"] === "undefined") {
         obj["image"] = "";
     }
