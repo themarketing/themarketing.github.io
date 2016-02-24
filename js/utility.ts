@@ -51,9 +51,10 @@ function applyDOM(dom: HTMLElement, a): HTMLElement {
     console.log(a);
     console.log(a.after);
     if (dom.querySelector(a.selector)) {
+      console.log(a.after);
         let elms = dom.querySelectorAll(a.selector);
-        Array.prototype.map.call(elms, (elm) => {
-          console.log(a.after);
+        [].map.call(elms, (elm) => {
+            console.log(a.after);
             if (typeof a.after !== "undefined") {
                 a.fn(elm, a.after);
             }
