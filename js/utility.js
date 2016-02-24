@@ -41,9 +41,7 @@ function applyDOM(dom, a) {
     console.log(a);
     console.log(a.after);
     console.log(a.selector);
-    console.log(a.after);
     var elms = dom.querySelectorAll(a.selector);
-    console.log(dom.querySelector(a.selector));
     console.log(elms);
     [].map.call(elms, function (elm) {
         console.log(a.after);
