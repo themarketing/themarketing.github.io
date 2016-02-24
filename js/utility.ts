@@ -52,14 +52,15 @@ function applyDOM(dom: HTMLElement, a): HTMLElement {
     console.log(a.after);
     console.log(a.selector);
     //if (dom.querySelector(a.selector)) {
+    console.log(a.after);
+    let elms = dom.querySelectorAll(a.selector);
+    console.log(elms);
+    [].map.call(elms, (elm) => {
         console.log(a.after);
-        let elms = dom.querySelectorAll(a.selector);
-        [].map.call(elms, (elm) => {
-            console.log(a.after);
-            if (typeof a.after !== "undefined") {
-                a.fn(elm, a.after);
-            }
-        });
+        if (typeof a.after !== "undefined") {
+            a.fn(elm, a.after);
+        }
+    });
     //}
     return dom;
 }
