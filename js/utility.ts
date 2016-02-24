@@ -54,7 +54,8 @@ function applyDOM(dom: HTMLElement, a): HTMLElement {
     //if (dom.querySelector(a.selector)) {
     //console.log(a.after);
 
-    let elms = dom.querySelectorAll(a.selector);
+    //let elms = dom.querySelectorAll(a.selector);
+    let elms = dom.querySelectorAll(".rpPersonName");
 
     console.log(elms);
 
