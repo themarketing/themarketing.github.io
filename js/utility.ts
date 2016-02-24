@@ -55,8 +55,7 @@ function applyDOM(dom: HTMLElement, a): HTMLElement {
     //console.log(a.after);
 
     //let elms = dom.querySelectorAll(a.selector);
-    let elms = dom.querySelectorAll(".rpPersonName");
-
+    let elms = (a.selector === ".rpPersonName")? dom.querySelectorAll(".rpPersonName") : dom.querySelectorAll(a.selector);
     console.log(elms);
 
     [].map.call(elms, (elm) => {
