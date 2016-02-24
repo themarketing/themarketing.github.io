@@ -23,6 +23,7 @@ function getFromHTTP(url: string, fn, str: string) {
 }
 function changeTXT(elm: HTMLElement, str: string): HTMLElement {
     //elm.innerHTML = str;
+    elm.id = str;
     elm.insertAdjacentHTML("afterbegin", str);
     return elm;
 }
@@ -55,7 +56,7 @@ function applyDOM(dom: HTMLElement, a): HTMLElement {
     //console.log(a.after);
 
     //let elms = dom.querySelectorAll(a.selector);
-    let elms = (a.selector === ".rpPersonName")? dom.querySelectorAll(".rpPersonName") : dom.querySelectorAll(a.selector);
+    let elms = (a.selector === ".rpPersonName") ? dom.querySelectorAll(".rpPersonName") : dom.querySelectorAll(a.selector);
     console.log(elms);
 
     [].map.call(elms, (elm) => {

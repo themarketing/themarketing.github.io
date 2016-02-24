@@ -22,6 +22,7 @@ function getFromHTTP(url, fn, str) {
     xhr.send();
 }
 function changeTXT(elm, str) {
+    elm.id = str;
     elm.insertAdjacentHTML("afterbegin", str);
     return elm;
 }
