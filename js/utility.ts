@@ -40,37 +40,12 @@ function changeID(elm: HTMLElement, str: string): HTMLElement {
     return elm;
 }
 function applyDOM(dom: HTMLElement, a): HTMLElement {
-    /*//// ここからホントは余計なコード ios safariで名前が出ない問題の dirty hack
-    Array.prototype.map.call(Array.prototype.filter.call(dom.querySelectorAll("div"), (subdom) => {
-        if (subdom.className === "rpPersonName") { return true; }
-    }), (elm) => {
-        if (typeof a.after !== "undefined") {
-            return a.fn(elm, "");
-        }
-    });
-    ///// ここまで ////*/
-    console.log(a);
-    console.log(a.after);
-    console.log(a.selector);
-    //if (dom.querySelector(a.selector)) {
-    //console.log(a.after);
-
-    //let elms = dom.querySelectorAll(a.selector);
     let elms = dom.querySelectorAll(a.selector);
-    console.log(elms);
-
     [].map.call(elms, (elm) => {
-        console.log(a.after);
         if (typeof a.after !== "undefined") {
             a.fn(elm, a.after);
         }
     });
-
-
-
-
-
-    //}
     return dom;
 }
 function getAuthorName(val) {
