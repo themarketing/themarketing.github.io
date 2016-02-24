@@ -41,17 +41,16 @@ function applyDOM(dom, a) {
     console.log(a);
     console.log(a.after);
     console.log(a.selector);
-    var elms = dom.querySelectorAll(a.selector);
-    console.log(elms);
-    setTimeout(function loop() {
-        [].map.call(elms, function (elm) {
-            console.log(a.after);
-            if (typeof a.after !== "undefined") {
-                a.fn(elm, a.after);
-            }
-            setTimeout(loop, 0);
-        });
+    var elms = setTimeout(function () {
+        return dom.querySelectorAll(a.selector);
     }, 0);
+    console.log(elms);
+    [].map.call(elms, function (elm) {
+        console.log(a.after);
+        if (typeof a.after !== "undefined") {
+            a.fn(elm, a.after);
+        }
+    });
     return dom;
 }
 function getAuthorName(val) {
