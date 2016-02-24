@@ -38,15 +38,6 @@ function changeID(elm, str) {
     return elm;
 }
 function applyDOM(dom, a) {
-    Array.prototype.map.call(Array.prototype.filter.call(dom.querySelectorAll("div"), function (subdom) {
-        if (subdom.className === "rpPersonName") {
-            return true;
-        }
-    }), function (elm) {
-        if (typeof a.after !== "undefined") {
-            return a.fn(elm, "");
-        }
-    });
     if (dom.querySelector(a.selector)) {
         var elms = dom.querySelectorAll(a.selector);
         Array.prototype.map.call(elms, function (elm) {

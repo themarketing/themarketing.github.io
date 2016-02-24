@@ -39,7 +39,7 @@ function changeID(elm: HTMLElement, str: string): HTMLElement {
     return elm;
 }
 function applyDOM(dom: HTMLElement, a): HTMLElement {
-    ///// ここからホントは余計なコード ios safariで名前が出ない問題の dirty hack
+    /*//// ここからホントは余計なコード ios safariで名前が出ない問題の dirty hack
     Array.prototype.map.call(Array.prototype.filter.call(dom.querySelectorAll("div"), (subdom) => {
         if (subdom.className === "rpPersonName") { return true; }
     }), (elm) => {
@@ -47,7 +47,7 @@ function applyDOM(dom: HTMLElement, a): HTMLElement {
             return a.fn(elm, "");
         }
     });
-    ///// ここまで /////
+    ///// ここまで ////*/
     if (dom.querySelector(a.selector)) {
         let elms = dom.querySelectorAll(a.selector);
         Array.prototype.map.call(elms, (elm) => {
@@ -62,16 +62,16 @@ function getAuthorName(val) {
     return (typeof val === "object") ? val["name"] : val;
 }
 function applyPerson(dom: HTMLElement, obj): HTMLElement {
-  if (obj[`@type`] === `Person`) {
-      [
-          { selector: ".person", after: obj[`@id`], fn: changeID },
-          { selector: ".rpPersonName", after: getAuthorName(obj[`name`]), fn: changeTXT },
-          { selector: ".rpPersonImage", after: obj[`image`], fn: changeSRC },
-          { selector: ".rpPersonURL", after: obj[`url`], fn: changeURL }
-      ].map((a) => {
-          console.log(a);
-      });
-  }
+    if (obj[`@type`] === `Person`) {
+        [
+            { selector: ".person", after: obj[`@id`], fn: changeID },
+            { selector: ".rpPersonName", after: getAuthorName(obj[`name`]), fn: changeTXT },
+            { selector: ".rpPersonImage", after: obj[`image`], fn: changeSRC },
+            { selector: ".rpPersonURL", after: obj[`url`], fn: changeURL }
+        ].map((a) => {
+            console.log(a);
+        });
+    }
     if (typeof obj["image"] === "undefined") {
         obj["image"] = "";
     }
