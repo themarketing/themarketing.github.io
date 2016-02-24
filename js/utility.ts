@@ -50,8 +50,9 @@ function applyDOM(dom: HTMLElement, a): HTMLElement {
     ///// ここまで ////*/
     console.log(a);
     console.log(a.after);
-    if (dom.querySelector(a.selector)) {
-      console.log(a.after);
+    console.log(a.selector);
+    //if (dom.querySelector(a.selector)) {
+        console.log(a.after);
         let elms = dom.querySelectorAll(a.selector);
         [].map.call(elms, (elm) => {
             console.log(a.after);
@@ -59,7 +60,7 @@ function applyDOM(dom: HTMLElement, a): HTMLElement {
                 a.fn(elm, a.after);
             }
         });
-    }
+    //}
     return dom;
 }
 function getAuthorName(val) {

@@ -40,16 +40,15 @@ function changeID(elm, str) {
 function applyDOM(dom, a) {
     console.log(a);
     console.log(a.after);
-    if (dom.querySelector(a.selector)) {
+    console.log(a.selector);
+    console.log(a.after);
+    var elms = dom.querySelectorAll(a.selector);
+    [].map.call(elms, function (elm) {
         console.log(a.after);
-        var elms = dom.querySelectorAll(a.selector);
-        [].map.call(elms, function (elm) {
-            console.log(a.after);
-            if (typeof a.after !== "undefined") {
-                a.fn(elm, a.after);
-            }
-        });
-    }
+        if (typeof a.after !== "undefined") {
+            a.fn(elm, a.after);
+        }
+    });
     return dom;
 }
 function getAuthorName(val) {
