@@ -55,12 +55,19 @@ function applyDOM(dom: HTMLElement, a): HTMLElement {
     //console.log(a.after);
     let elms = dom.querySelectorAll(a.selector);
     console.log(elms);
-    [].map.call(elms, (elm) => {
-        console.log(a.after);
-        if (typeof a.after !== "undefined") {
-            a.fn(elm, a.after);
-        }
+    setTimeout(function loop(){
+      [].map.call(elms, (elm) => {
+          console.log(a.after);
+          if (typeof a.after !== "undefined") {
+              a.fn(elm, a.after);
+          }
+            setTimeout(loop,0);
     });
+    },0);
+
+
+
+
     //}
     return dom;
 }
