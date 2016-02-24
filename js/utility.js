@@ -22,7 +22,7 @@ function getFromHTTP(url, fn, str) {
     xhr.send();
 }
 function changeTXT(elm, str) {
-    elm.insertAdjacentHTML('afterbegin', str);
+    elm.insertAdjacentHTML("afterbegin", str);
     return elm;
 }
 function changeSRC(elm, str) {
@@ -58,9 +58,19 @@ function applyDOM(dom, a) {
     return dom;
 }
 function getAuthorName(val) {
-    return (typeof val === 'object') ? val['name'] : val;
+    return (typeof val === "object") ? val["name"] : val;
 }
 function applyPerson(dom, obj) {
+    if (obj["@type"] === "Person") {
+        [
+            { selector: ".person", after: obj["@id"], fn: changeID },
+            { selector: ".rpPersonName", after: getAuthorName(obj["name"]), fn: changeTXT },
+            { selector: ".rpPersonImage", after: obj["image"], fn: changeSRC },
+            { selector: ".rpPersonURL", after: obj["url"], fn: changeURL }
+        ].map(function (a) {
+            console.log(a);
+        });
+    }
     if (typeof obj["image"] === "undefined") {
         obj["image"] = "";
     }
@@ -117,7 +127,7 @@ function getJSONLDs(dom) {
     });
 }
 function getHTMLTemplates(dom) {
-    var vals = dom.querySelectorAll('template');
+    var vals = dom.querySelectorAll("template");
     return Array.prototype.map.call(vals, function (val) {
         return val.content;
     });
@@ -130,7 +140,7 @@ function applyJSONLD(doms, objs, fn) {
     });
 }
 function applyHTMLTemplates(dom) {
-    var vals = dom.querySelectorAll('template');
+    var vals = dom.querySelectorAll("template");
     Array.prototype.map.call(vals, function (val) {
         document.body.appendChild(document.importNode(val.content, true));
     });
@@ -146,7 +156,7 @@ function initModule(tmpl, urls, fn) {
         getContextFromHTTP(tmpl, function (dom) {
             getTextFromHTTP(urls, function (text) {
                 text.split(/\r\n|\r|\n/).filter(function (item) {
-                    if (item !== '')
+                    if (item !== "")
                         return true;
                 }).map(function (url) {
                     var templdom = dom.cloneNode(true);
