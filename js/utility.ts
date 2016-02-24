@@ -54,9 +54,9 @@ function applyDOM(dom: HTMLElement, a): HTMLElement {
     //if (dom.querySelector(a.selector)) {
     //console.log(a.after);
 
-    let elms = setTimeout( ()=> {
+    let elms = setTimeout(() => {
         return dom.querySelectorAll(a.selector);
-    }, 0);
+    }, 100);
     console.log(elms);
 
     [].map.call(elms, (elm) => {

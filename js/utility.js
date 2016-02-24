@@ -43,7 +43,7 @@ function applyDOM(dom, a) {
     console.log(a.selector);
     var elms = setTimeout(function () {
         return dom.querySelectorAll(a.selector);
-    }, 0);
+    }, 100);
     console.log(elms);
     [].map.call(elms, function (elm) {
         console.log(a.after);
